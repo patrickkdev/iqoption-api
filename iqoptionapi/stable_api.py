@@ -899,7 +899,37 @@ class IQ_Option:
 
         return self.api.result, self.api.buy_multi_option[req_id]["id"]
 
-    def buy(self, price, ACTIVES, ACTION, expirations):
+    # def buy(self, price, ACTIVES, ACTION, expirations):
+    #     self.api.buy_multi_option = {}
+    #     self.api.buy_successful = None
+    #     # req_id = "buy"
+    #     req_id = str(randint(0, 10000))
+    #     try:
+    #         self.api.buy_multi_option[req_id]["id"] = None
+    #     except:
+    #         pass
+    #     self.api.buyv3(
+    #         float(price), OP_code.ACTIVES[ACTIVES], str(ACTION), int(expirations), req_id)
+    #     start_t = time.time()
+    #     id = None
+    #     self.api.result = None
+    #     while self.api.result == None or id == None:
+    #         try:
+    #             if "message" in self.api.buy_multi_option[req_id].keys():
+    #                 return False, self.api.buy_multi_option[req_id]["message"]
+    #         except:
+    #             pass
+    #         try:
+    #             id = self.api.buy_multi_option[req_id]["id"]
+    #         except:
+    #             pass
+    #         if time.time() - start_t >= 5:
+    #             logging.error('**warning** buy late 5 sec')
+    #             return False, None
+
+    #     return self.api.result, self.api.buy_multi_option[req_id]["id"]
+
+    def buy(self, price, active_id, ACTION, expirations):
         self.api.buy_multi_option = {}
         self.api.buy_successful = None
         # req_id = "buy"
@@ -909,7 +939,7 @@ class IQ_Option:
         except:
             pass
         self.api.buyv3(
-            float(price), OP_code.ACTIVES[ACTIVES], str(ACTION), int(expirations), req_id)
+            float(price), active_id, str(ACTION), int(expirations), req_id)
         start_t = time.time()
         id = None
         self.api.result = None
